@@ -1,0 +1,24 @@
+﻿<!--
+This is the view that is displayed.
+Associated with the ProductController.cs.
+This view references the ProductSummary.cshtml partial view.
+
+Calls ProductListModelView.cs (model ProductsListViewModel, Model.PagingInfo, Model.CurrentCategory)
+Calls the ProductSummary.cshmtl file (Html.Partial("ProductSummary"))
+Calls PageLinkTagHelper.cs
+-->
+
+@model ProductsListViewModel
+
+@foreach (var p in Model.Products)
+{
+    @Html.Partial("ProductSummary", p)
+}
+
+<!--
+The below div references the PageLinkTagHelper.cs file
+-->
+<div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-secondary"
+     page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory" class="btn-group pull-right m-1">
+</div>

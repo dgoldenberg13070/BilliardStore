@@ -1,0 +1,11 @@
+﻿<!--
+ The '_ViewImports view' specifys the namespaces that will be included in Razor view files. It also is used to set up tag helpers.
+
+-->
+
+@using BilliardStore.Models
+@using BilliardStore.Models.ViewModels
+@using BilliardStore.Infrastructure
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper BilliardStore.Infrastructure.*, SportsStore

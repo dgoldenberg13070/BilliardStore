@@ -1,0 +1,38 @@
+﻿<!--
+The _Layout.cshmtl view defines an html layout template that can be used by other views.
+It is located in the Views/Shared folder
+This is where bootstrap is defined for use.
+Calls NavigationMenuViewComponent.cs, CartSummaryViewComponent.cs
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet"
+          asp-href-include="/lib/bootstrap/dist/**/*.min.css"
+          asp-href-exclude="**/*-reboot*,**/*-grid*" />
+    <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
+    <title>BilliardStore</title>
+</head>
+<body>
+    <div class="navbar navbar-inverse bg-inverse" role="navigation">
+        <div class="row">
+            <a class="col navbar-brand" href="#">CHALKY'S BILLIARD STORE</a>
+            <div class="col-4 text-right">@await Component.InvokeAsync("CartSummary")</div>
+        </div>        
+    </div>
+    <div class="row m-1 p-1">
+        <div id="categories" class="col-3">
+            <!--
+            Next line first calls the Invoke method from the NavigationMenuViewComponent.cs file which is in the Components folder and then calls the Default.cshtml file which in the
+            Shared/Components/NavigationMenu/ folder
+            -->
+            @await Component.InvokeAsync("NavigationMenu")
+        </div>
+            <div class="col-9">
+                @RenderBody()
+            </div>
+        </div>
+    </body>
+    </html>

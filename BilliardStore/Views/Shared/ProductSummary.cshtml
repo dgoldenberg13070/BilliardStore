@@ -1,0 +1,37 @@
+﻿<!--
+This view uses bootstrap styles.
+This is a partial view, which is a fragment of content that is embedded into another view. Partial views help reduce duplication
+when you need the same content to appear in different places in the application.
+This view is located in the Views/Shared/ folder.
+Data from the ProductsListViewModel.cs file is passed into here.
+
+Calls Product.cs (model Product, Model.Name, Model.Price.ToString("c"), Model.Description), UrlExtensions.cs
+
+-->
+
+@model Product
+<div class="card card-outline-primary m-1 p-1">
+    <div class="bg-faded p-1">
+        <h5>
+            @Model.Name
+            <span class="badge badge-pill badge-primary" style="float:right">
+                <small>@Model.Price.ToString("c")</small>
+            </span>
+            <br />
+            <img style="max-height:5em;padding-top:.5em" src="@Model.ImageUrl" />
+        </h5>
+    </div>    
+    <form id="@Model.ProductID" asp-action="AddToCart" asp-controller="Cart" method="post">
+        <input type="hidden" asp-for="ProductID" />
+        <!--
+        Next line calls the PathAndQuery method from the UrlExtensions.cs file.
+        -->
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <span class="card-text p-1">
+            @Model.Description
+            <button type="submit" class="btn btn-success btn-sm pull-right" style="float:right">Add to Cart</button>
+        </span>
+    </form>
+</div>
+
+
