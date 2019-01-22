@@ -28,8 +28,13 @@ namespace BilliardStore.Models
             {
                 lineCollection.Add(new CartLine
                 {
-                    Product = product,
-                    Quantity = quantity
+                    Product = product,                    
+                    ProductName = product.Name,
+                    ProductDescription = product.Description,
+                    Quantity = quantity,
+                    UnitPrice = product.Price,
+                    LineTotal = quantity * product.Price,
+                    ProductID = product.ProductID
                 });
             }
             else
@@ -76,8 +81,20 @@ namespace BilliardStore.Models
 
         public Product Product { get; set; }
 
+        public string ProductName { get; set; }
+
+        public string ProductDescription { get; set; }
+
         public int Quantity { get; set; }
 
+        [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "Money")]
+        public decimal UnitPrice { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "Money")]
+        public decimal LineTotal { get; set; }
+        
+        public int ProductID { get; set; }
+               
         //empty constructor
         public CartLine()
         {

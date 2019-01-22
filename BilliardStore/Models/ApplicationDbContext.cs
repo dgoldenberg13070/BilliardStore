@@ -13,10 +13,10 @@ namespace BilliardStore.Models
     // this is a class for ApplicationDbContext which inherits the Microsoft.EntityFrameworkCore.DbContext class
     public class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbContext
     {
-        
-        public Microsoft.EntityFrameworkCore.DbSet<Product> Products { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<ProductCategory> ProductCategories { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Product> Products { get; set; }       
         public Microsoft.EntityFrameworkCore.DbSet<Order> Orders { get; set; }
-
+    
         // here is the constructor. It takes a parameter of 'options'. 'options' is of type Microsoft.EntityFrameworkCore.DbContextOptions
         // it calls the constructor for the Microsoft.EntityFrameworkCore.DbContextOptions parent class
         public ApplicationDbContext(Microsoft.EntityFrameworkCore.DbContextOptions<ApplicationDbContext> options) : base(options) { }

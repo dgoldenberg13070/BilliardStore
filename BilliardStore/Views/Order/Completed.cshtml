@@ -1,3 +1,17 @@
-﻿<h2>Thanks!</h2>
-<p>Thanks for placing your order.</p>
-<p>Your order will be shipped as soon as possible.</p>
+﻿@model Order
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Details for @Model.TrackingNumber</h2>
+<dl>
+    <dt>Order Date</dt>
+    <dd>@Model.PlacementDate.ToShortDateString()</dd>
+    <dt>Ship Date</dt>
+    <dd>@(Model.ShipDate.HasValue ? Model.ShipDate.Value.ToShortDateString() : "Not Shipped")</dd>
+    <dt>Delivered Date</dt>
+    <dd">@(Model.DeliveryDate.HasValue ? Model.DeliveryDate.Value.ToShortDateString() : "Not Delivered")</dd">
+</dl>
+<ul>
+   
+</ul>

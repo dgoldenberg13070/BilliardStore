@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BilliardStore.Migrations
+namespace SportsStore.Migrations
 {
-    public partial class asflasf : Migration
+    public partial class addfljajfdgewttzvgbdsgfgd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,6 +14,16 @@ namespace BilliardStore.Migrations
                 {
                     OrderID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    TrackingNumber = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: false),
+                    PlacementDate = table.Column<DateTime>(nullable: false),
+                    ShipDate = table.Column<DateTime>(nullable: true),
+                    DeliveryDate = table.Column<DateTime>(nullable: true),
+                    SubTotal = table.Column<decimal>(type: "Money", nullable: false),
+                    Tax = table.Column<decimal>(type: "Money", nullable: false),
+                    Shipping = table.Column<decimal>(type: "Money", nullable: false),
+                    Total = table.Column<decimal>(type: "Money", nullable: false),
+                    Phone = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Line1 = table.Column<string>(nullable: false),
                     Line2 = table.Column<string>(nullable: true),
@@ -20,11 +31,28 @@ namespace BilliardStore.Migrations
                     City = table.Column<string>(nullable: false),
                     State = table.Column<string>(nullable: false),
                     Zip = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: false)
+                    Country = table.Column<string>(nullable: false),
+                    CardNumber = table.Column<string>(nullable: false),
+                    CVV = table.Column<string>(nullable: false),
+                    ExpirationDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.OrderID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductCategories",
+                columns: table => new
+                {
+                    ProductCategoryID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Category = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductCategories", x => x.ProductCategoryID);
                 });
 
             migrationBuilder.CreateTable(
@@ -35,13 +63,22 @@ namespace BilliardStore.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(nullable: false),
+                    Price = table.Column<decimal>(type: "Money", nullable: false),
                     Category = table.Column<string>(nullable: true),
-                    ImageUrl = table.Column<string>(nullable: true)
+                    ProductCategoryID = table.Column<int>(nullable: false),
+                    ImageUrlMain = table.Column<string>(nullable: true),
+                    ImageUrlSecondary = table.Column<string>(nullable: true),
+                    ImageUrlOptional = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductID);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductCategories_ProductCategoryID",
+                        column: x => x.ProductCategoryID,
+                        principalTable: "ProductCategories",
+                        principalColumn: "ProductCategoryID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,8 +87,12 @@ namespace BilliardStore.Migrations
                 {
                     CartLineID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ProductID = table.Column<int>(nullable: true),
+                    ProductName = table.Column<string>(nullable: true),
+                    ProductDescription = table.Column<string>(nullable: true),
                     Quantity = table.Column<int>(nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "Money", nullable: false),
+                    LineTotal = table.Column<decimal>(type: "Money", nullable: false),
+                    ProductID = table.Column<int>(nullable: false),
                     OrderID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -68,7 +109,7 @@ namespace BilliardStore.Migrations
                         column: x => x.ProductID,
                         principalTable: "Products",
                         principalColumn: "ProductID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -80,6 +121,11 @@ namespace BilliardStore.Migrations
                 name: "IX_CartLine_ProductID",
                 table: "CartLine",
                 column: "ProductID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ProductCategoryID",
+                table: "Products",
+                column: "ProductCategoryID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -92,6 +138,9 @@ namespace BilliardStore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "ProductCategories");
         }
     }
 }

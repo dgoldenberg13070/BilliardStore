@@ -10,7 +10,7 @@ namespace BilliardStore.Controllers
     {
         //instance variables
         private Models.IProductRepository repository;
-        private readonly int PageSize = 3;
+        private readonly int PageSize = 2;
 
         //this is the constructor. 
         //'repo' which is an object of type IProductRepository is passed in as a parameter.
