@@ -55,16 +55,7 @@
         public string Zip { get; set; }
 
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter a country name")]
-        public string Country { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter the credit card number")]
-        public string CardNumber {get; set;}
-
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter the credit cart CVV code")]
-        public string CVV { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter the credit cart expiration date")]
-        public System.DateTime? ExpirationDate { get; set; }
+        public string Country { get; set; }       
 
     }
 

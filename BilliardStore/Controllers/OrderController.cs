@@ -7,7 +7,6 @@ namespace BilliardStore.Controllers
 
     public class OrderController : Microsoft.AspNetCore.Mvc.Controller
     {
-
         private Models.IOrderRepository repository;
         private Models.Cart cart;
         private readonly SendGrid.ISendGridClient _sendGridClient;
@@ -21,8 +20,9 @@ namespace BilliardStore.Controllers
             _braintreeGateway = braintreeGateway;
         }
         
-        public Microsoft.AspNetCore.Mvc.ViewResult Checkout()
+        public async System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ViewResult> Checkout()
         {
+            ViewBag.BraintreeClientToken = await _braintreeGateway.ClientToken.GenerateAsync();
             return View(new Models.Order());
         }
 
@@ -40,11 +40,10 @@ namespace BilliardStore.Controllers
             {
                 Braintree.TransactionRequest transactionRequest = new Braintree.TransactionRequest
                 {
-                    Amount = 1,
+                    Amount = cart.Lines.Sum(x => x.Quantity * x.Product.Price),
                     PaymentMethodNonce = braintreeNonce
                 };
-                var transactionResult = await _braintreeGateway.Transaction.SaleAsync(transactionRequest);                
-                ViewBag.BraintreeClientToken = await _braintreeGateway.ClientToken.GenerateAsync();
+                var transactionResult = await _braintreeGateway.Transaction.SaleAsync(transactionRequest);              
                 order.PlacementDate = System.DateTime.UtcNow;
                 order.TrackingNumber = System.Guid.NewGuid().ToString().Substring(0, 8);
                 order.SubTotal = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
