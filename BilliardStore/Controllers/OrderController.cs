@@ -1,6 +1,7 @@
 ﻿//Calls Cart.cs
 
 using System.Linq;
+using Braintree;
 
 namespace BilliardStore.Controllers
 {
@@ -38,17 +39,43 @@ namespace BilliardStore.Controllers
 
             if (ModelState.IsValid)
             {
+                Braintree.CustomerRequest customer = new Braintree.CustomerRequest();
+                //    if (User.Identity.IsAuthenticated)
+                //   {
+                //       var user = _context.Users.Single(x => x.UserName == User.Identity.Name);
+                //       customer.Email = user.Email;
+                //       customer.FirstName = user.FirstName;
+                //       customer.LastName = user.LastName;
+                //       customer.Phone = user.PhoneNumber;
+                //   }
+                //   else
+                //   {
+                        customer.Email = order.Email;
+                        customer.Phone = order.Phone;
+                //   }
+
                 Braintree.TransactionRequest transactionRequest = new Braintree.TransactionRequest
                 {
-                    Amount = cart.Lines.Sum(x => x.Quantity * x.Product.Price),
-                    PaymentMethodNonce = braintreeNonce
+                    Amount = cart.Lines.Sum(cartItem => cartItem.Quantity * cartItem.Product.Price),
+                    PaymentMethodNonce = order.BraintreeNonce,
+                    Customer = customer,
+                    LineItems = cart.Lines.Select(cartItem => new Braintree.TransactionLineItemRequest
+                    {
+                        UnitAmount = cartItem.Product.Price,
+                        Name = cartItem.Product.Name,
+                        Description = cartItem.Product.Description,
+                        Quantity = cartItem.Quantity,
+                        TotalAmount = cartItem.Quantity * cartItem.Product.Price,
+                        ProductCode = cartItem.ProductID.ToString(),
+                        LineItemKind = Braintree.TransactionLineItemKind.DEBIT
+                    }).ToArray()
                 };
-                var transactionResult = await _braintreeGateway.Transaction.SaleAsync(transactionRequest);              
+                var transactionResult = await _braintreeGateway.Transaction.SaleAsync(transactionRequest);
                 order.PlacementDate = System.DateTime.UtcNow;
                 order.TrackingNumber = System.Guid.NewGuid().ToString().Substring(0, 8);
                 order.SubTotal = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
                 order.Total = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
-                order.Lines = cart.Lines.ToArray();
+                order.Lines = cart.Lines.ToArray();                
                 repository.SaveOrder(order);
                 int z = 99;
                 if (z != 99)
@@ -76,6 +103,7 @@ namespace BilliardStore.Controllers
             }
             else
             {
+                ViewBag.BraintreeClientToken = await _braintreeGateway.ClientToken.GenerateAsync();
                 return View(order);
             }
 

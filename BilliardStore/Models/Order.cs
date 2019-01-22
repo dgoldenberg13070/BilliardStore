@@ -55,7 +55,10 @@
         public string Zip { get; set; }
 
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter a country name")]
-        public string Country { get; set; }       
+        public string Country { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Invalid or incomplete credit card information")]
+        public string BraintreeNonce { get; set; }
 
     }
 

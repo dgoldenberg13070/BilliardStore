@@ -74,16 +74,13 @@
                 },
                 fields: {
                     number: {
-                        selector: '#card-number',
-                        placeholder: '4111 1111 1111 1111'
+                        selector: '#card-number'                        
                     },
                     cvv: {
-                        selector: '#cvv',
-                        placeholder: '123'
+                        selector: '#cvv'                        
                     },
                     expirationDate: {
-                        selector: '#expiration-date',
-                        placeholder: '10/2019'
+                        selector: '#expiration-date'                        
                     }
                 }
             }, function (hostedFieldsErr, hostedFieldsInstance) {
@@ -93,15 +90,21 @@
                 }
                     var form = document.querySelector("form");
                     form.addEventListener('submit', function (event) {
-                    event.preventDefault();
-                    hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
-                        if (tokenizeErr) {
-                            console.error(tokenizeErr);
-                        }                        
-                        //console.log('Got a nonce: ' + payload.nonce);
-                        document.querySelector('#braintreeNonce').value = payload.nonce;
-                        form.submit();
-                    });
+                        event.preventDefault();
+                        var state = hostedFieldsInstance.getState();
+                        var formValid = Object.keys(state.fields).every(function (key) {
+                            return state.fields[key].isValid;
+                        });
+                        if (formValid) {
+                            hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
+                                if (tokenizeErr) {
+                                    console.error(tokenizeErr);
+                                }
+                                //console.log('Got a nonce: ' + payload.nonce);
+                                document.querySelector('#braintreeNonce').value = payload.nonce;
+                                form.submit();
+                            });
+                        }
                 }, false);
             });
         });
