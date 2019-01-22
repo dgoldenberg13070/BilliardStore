@@ -47,8 +47,8 @@ namespace BilliardStore.Models
                         Category = "Cues",
                         Price = 639.00m,
                         ImageUrlMain = "../images/cues/predator/pre8k01_01.jpg",
-                        ImageUrlSecondary = "../images/cues/predator/8k1-2.jpg",
-                        ImageUrlOptional = "../images/cues/predator/8k1-3.jpg"
+                        ImageUrlSecondary = "../images/cues/predator/8k1_2.jpg",
+                        ImageUrlOptional = "../images/cues/predator/8k1_3.jpg"
                     };
                     context.Products.Add(product);
 
@@ -60,8 +60,8 @@ namespace BilliardStore.Models
                         Category = "Cues",
                         Price = 252.00m,
                         ImageUrlMain = "../images/cues/mcdermott/g204_1.jpg",
-                        ImageUrlSecondary = "../images/cues/mcdermott/g204_2.jpg",
-                        ImageUrlOptional = "../images/cues/mcdermott/g204_3.jpg"
+                        ImageUrlSecondary = "../images/cues/mcdermott/g204_3.jpg",
+                        ImageUrlOptional = "../images/cues/mcdermott/g204_2.jpg"
                     };
                     context.Products.Add(product);
 
