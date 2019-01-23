@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SportsStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190122173202_addfljajfdgewttzvgbdsgfgd")]
-    partial class addfljajfdgewttzvgbdsgfgd
+    [Migration("20190123172730_adsfasdf")]
+    partial class adsfasdf
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,32 +58,16 @@ namespace SportsStore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CVV")
-                        .IsRequired();
-
-                    b.Property<string>("CardNumber")
+                    b.Property<string>("BraintreeNonce")
                         .IsRequired();
 
                     b.Property<string>("City")
-                        .IsRequired();
-
-                    b.Property<string>("Country")
                         .IsRequired();
 
                     b.Property<DateTime?>("DeliveryDate");
 
                     b.Property<string>("Email")
                         .IsRequired();
-
-                    b.Property<DateTime?>("ExpirationDate")
-                        .IsRequired();
-
-                    b.Property<string>("Line1")
-                        .IsRequired();
-
-                    b.Property<string>("Line2");
-
-                    b.Property<string>("Line3");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -93,6 +77,8 @@ namespace SportsStore.Migrations
 
                     b.Property<DateTime>("PlacementDate");
 
+                    b.Property<string>("PostalCode");
+
                     b.Property<DateTime?>("ShipDate");
 
                     b.Property<decimal>("Shipping")
@@ -100,6 +86,11 @@ namespace SportsStore.Migrations
 
                     b.Property<string>("State")
                         .IsRequired();
+
+                    b.Property<string>("Street1")
+                        .IsRequired();
+
+                    b.Property<string>("Street2");
 
                     b.Property<decimal>("SubTotal")
                         .HasColumnType("Money");
@@ -111,8 +102,6 @@ namespace SportsStore.Migrations
                         .HasColumnType("Money");
 
                     b.Property<string>("TrackingNumber");
-
-                    b.Property<string>("Zip");
 
                     b.HasKey("OrderID");
 

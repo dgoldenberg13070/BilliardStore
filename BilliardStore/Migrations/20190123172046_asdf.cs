@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SportsStore.Migrations
 {
-    public partial class addfljajfdgewttzvgbdsgfgd : Migration
+    public partial class asdf : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,10 +31,7 @@ namespace SportsStore.Migrations
                     City = table.Column<string>(nullable: false),
                     State = table.Column<string>(nullable: false),
                     Zip = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: false),
-                    CardNumber = table.Column<string>(nullable: false),
-                    CVV = table.Column<string>(nullable: false),
-                    ExpirationDate = table.Column<DateTime>(nullable: false)
+                    BraintreeNonce = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

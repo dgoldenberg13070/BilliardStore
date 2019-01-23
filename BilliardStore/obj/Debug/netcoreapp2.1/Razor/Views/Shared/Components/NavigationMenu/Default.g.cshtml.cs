@@ -66,7 +66,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(218, 112, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "decf34d587ad44adbc9d2fcd6dbe80c7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "db9382462ab14ca4911eb993173f645e", async() => {
                 BeginContext(322, 4, true);
                 WriteLiteral("Home");
                 EndContext();
@@ -106,7 +106,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("    ");
             EndContext();
             BeginContext(378, 265, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3324c087106041bd862dc26758080466", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e124df4758e945508182867eb9e45390", async() => {
                 BeginContext(614, 10, true);
                 WriteLiteral("\r\n        ");
                 EndContext();

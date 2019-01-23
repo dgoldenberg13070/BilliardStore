@@ -41,21 +41,17 @@
         public string Name { get; set; }
 
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter the first address line")]
-        public string Line1 { get; set; }
+        public string Street1 { get; set; }
 
-        public string Line2 { get; set; }
-        public string Line3 { get; set; }
-
+        public string Street2 { get; set; }
+        
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter a city name")]
         public string City { get; set; }
 
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter a state name")]
         public string State { get; set; }
 
-        public string Zip { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter a country name")]
-        public string Country { get; set; }
+        public string PostalCode { get; set; }
 
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Invalid or incomplete credit card information")]
         public string BraintreeNonce { get; set; }

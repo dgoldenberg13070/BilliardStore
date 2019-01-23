@@ -1,7 +1,8 @@
 ﻿//Calls Cart.cs
 
+//using SmartyStreets.USAutocompleteApi;
+//using SmartyStreets.USExtractApi;
 using System.Linq;
-using Braintree;
 
 namespace BilliardStore.Controllers
 {
@@ -12,13 +13,16 @@ namespace BilliardStore.Controllers
         private Models.Cart cart;
         private readonly SendGrid.ISendGridClient _sendGridClient;
         private readonly Braintree.IBraintreeGateway _braintreeGateway;
+        private readonly SmartyStreets.IClient<SmartyStreets.USStreetApi.Lookup> _usStreetClient;
+        readonly string debug = "false";
 
-        public OrderController(Models.IOrderRepository repoService, Models.Cart cartService, SendGrid.ISendGridClient sendGridClient, Braintree.IBraintreeGateway braintreeGateway)
+        public OrderController(Models.IOrderRepository repoService, Models.Cart cartService, SendGrid.ISendGridClient sendGridClient, Braintree.IBraintreeGateway braintreeGateway, SmartyStreets.IClient<SmartyStreets.USStreetApi.Lookup> usStreetClient)
         {
             repository = repoService;
             cart = cartService;
             _sendGridClient = sendGridClient;
             _braintreeGateway = braintreeGateway;
+            _usStreetClient = usStreetClient;
         }
         
         public async System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ViewResult> Checkout()
@@ -76,9 +80,8 @@ namespace BilliardStore.Controllers
                 order.SubTotal = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
                 order.Total = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
                 order.Lines = cart.Lines.ToArray();                
-                repository.SaveOrder(order);
-                int z = 99;
-                if (z != 99)
+                repository.SaveOrder(order);                
+                if (debug != "true")
                 {
                     var message = new SendGrid.Helpers.Mail.SendGridMessage
                     {
@@ -114,6 +117,27 @@ namespace BilliardStore.Controllers
             Models.Order order = repository.Orders.Single(x => x.TrackingNumber == id);
             cart.Clear();
             return View(order);
+        }
+
+        public Microsoft.AspNetCore.Mvc.IActionResult ValidateAddress(string street, string street2, string city, string state, string zipCode)
+        {
+          //  if (string.IsNullOrEmpty(street) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(state))
+          //  {
+          //      return BadRequest("street, city, state, and zipCode are required");
+          //  }
+            SmartyStreets.USStreetApi.Lookup lookup = new SmartyStreets.USStreetApi.Lookup
+            {
+                Street = street,
+                Street2 = street2,
+                City = city,
+                State = state,
+                ZipCode = zipCode
+            };
+            if (debug != "true")
+            {
+                _usStreetClient.Send(lookup);
+            }
+            return Json(lookup.Result.ToArray());
         }
 
     }

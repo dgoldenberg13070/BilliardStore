@@ -3,49 +3,46 @@
 <form asp-action="Checkout" method="post">
     <h3>Ship to</h3>
     <div class="form-group">
-        <label>Name:</label><input asp-for="Name" class="form-control" />
+        <label>Name:</label><input asp-for="Name" class="form-control" required />
     </div>
     <div class="form-group">
-        <label>Email:</label><input asp-for="Email" class="form-control" />
+        <label>Email:</label><input asp-for="Email" type="email" class="form-control" required />
     </div>
     <div class="form-group">
-        <label>Phone:</label><input asp-for="Phone" class="form-control" />
+        <label>Phone:</label><input asp-for="Phone" type="text" class="form-control" required />
     </div>
+    <br />
     <h3>Address</h3>
     <div class="form-group">
-        <label>Line 1:</label><input asp-for="Line1" class="form-control" />
+        <label>Line 1:</label><input asp-for="Street1" class="form-control" required />
     </div>
     <div class="form-group">
-        <label>Line 2:</label><input asp-for="Line2" class="form-control" />
+        <label>Line 2:</label><input asp-for="Street2" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Line 3:</label><input asp-for="Line3" class="form-control" />
+        <label>City:</label><input asp-for="City" class="form-control" required />
     </div>
     <div class="form-group">
-        <label>City:</label><input asp-for="City" class="form-control" />
+        <label>State:</label><input asp-for="State" class="form-control" required />
     </div>
     <div class="form-group">
-        <label>State:</label><input asp-for="State" class="form-control" />
+        <label>Zip:</label><input asp-for="PostalCode" type="text" pattern="[0-9]{5}" title="Five digit numeric value" class="form-control" required />
     </div>
-    <div class="form-group">
-        <label>Zip:</label><input asp-for="Zip" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Country:</label><input asp-for="Country" class="form-control" />
-    </div>
+    <button class="btn btn-default" disabled id="validate-address">Validate Address</button>
+    <br /><br />
     <h3>Payment</h3>
     <input type="hidden" id="braintreeNonce" name="braintreeNonce" />
     <div class="form-group">
         <label for="card-number">Card Number:</label>
-        <div class="form-control" id="card-number"></div>
+        <div class="form-control" id="card-number" required></div>
     </div>
     <div class="form-group">
         <label for="cvv">CVV:</label>
-        <div class="form-control" id="cvv"></div>
+        <div class="form-control" id="cvv" type="text" pattern="[0-9]{3}" title="Three digit numeric value" required></div>
     </div>
     <div class="form-group">
         <label for="expiration-date">Expiration Date:</label>
-        <div class="form-control" id="expiration-date"></div>
+        <div class="form-control" id="expiration-date" required></div>
     </div>
     <div class="text-center">
         <input class="btn btn-primary" type="submit" value="Complete Order" />
@@ -74,13 +71,13 @@
                 },
                 fields: {
                     number: {
-                        selector: '#card-number'                        
+                        selector: '#card-number'
                     },
                     cvv: {
-                        selector: '#cvv'                        
+                        selector: '#cvv'
                     },
                     expirationDate: {
-                        selector: '#expiration-date'                        
+                        selector: '#expiration-date'
                     }
                 }
             }, function (hostedFieldsErr, hostedFieldsInstance) {
@@ -110,3 +107,68 @@
         });
     </script>
 }
+<script type="text/javascript">
+    var validateAddressButton = document.querySelector("#validate-address");
+    document.querySelectorAll("#Street1, #City, #State").forEach(e => {
+        e.addEventListener("change", (event) => {
+            var addressValidationEnabled = true;
+            document.querySelectorAll("#Street1, #City, #State").forEach(e2 => {
+                if (e2.value.length == 0) {
+                    addressValidationEnabled = false;
+                }
+            });
+            if (addressValidationEnabled) {
+                validateAddressButton.removeAttribute('disabled');
+            } else {
+                validateAddressButton.setAttribute('disabled', 'disabled');
+            }
+        })
+    });
+    validateAddressButton.addEventListener("click", (event) => {  
+        event.preventDefault();
+        var street = document.querySelector("#Street1").value;
+        var city = document.querySelector("#City").value;
+        var state = document.querySelector("#State").value;
+        var zipCode = document.querySelector("#PostalCode").value;
+        var requestUrl = "/Order/ValidateAddress?";       
+        if (street != null && street.length > 0) {
+            requestUrl += "street=" + street + "&";
+        }
+        if (city != null && city.length > 0) {
+            requestUrl += "city=" + city + "&";
+        }
+        if (state != null && state.length > 0) {
+            requestUrl += "state=" + state + "&";
+        }
+        if (zipCode != null && zipCode.length > 0) {
+            requestUrl += "zipCode=" + zipCode + "&";
+        }
+        fetch(requestUrl).then((response) => {               
+            response.json().then((json) => {              
+                if (json.length == 0) {                
+                    validateAddressButton.classList.remove("btn-success");
+                    validateAddressButton.classList.add("btn-danger");
+                    document.querySelectorAll("#Street1, #City, #State, #PostalCode").forEach(e3 => {                        
+                        e3.classList.add("is-invalid");
+                        e3.classList.remove("is-valid");
+                    });                    
+                } else {                    
+                    validateAddressButton.classList.add("btn-success");
+                    validateAddressButton.classList.remove("btn-danger");
+                    document.querySelectorAll("#Street1, #City, #State, #PostalCode").forEach(e3 => {                        
+                        e3.classList.add("is-valid");
+                        e3.classList.remove("is-invalid");
+                    });
+                    if (json[0].components.plus4_code != null && json[0].components.plus4_code.length > 0) {
+                        document.querySelector("#PostalCode").value = json[0].components.zipcode + "-" + json[0].components.plus4_code
+                    } else {
+                        document.querySelector("#PostalCode").value = json[0].components.zipcode;
+                    }
+                    document.querySelector("#Street1").value = json[0].delivery_line_1;
+                    document.querySelector("#City").value = json[0].components.city_name;
+                    document.querySelector("#State").value = json[0].components.state_abbreviation;
+                }
+            })
+        })
+    });
+</script>

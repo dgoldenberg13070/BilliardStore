@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "d9961924a33469419248e51cd084664a33091a1c"
+    "signature": "208ed267be0f045866670d71db9cc7c28717713b"
   },
   "compilationOptions": {
     "defines": [
@@ -30,7 +30,8 @@
           "Microsoft.AspNetCore.Razor.Design": "2.1.1",
           "Microsoft.NETCore.App": "2.1.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.1",
-          "Sendgrid": "9.10.0"
+          "Sendgrid": "9.10.0",
+          "smartystreets-dotnet-sdk": "8.0.15"
         },
         "runtime": {
           "SportsStore.dll": {}
@@ -421,6 +422,17 @@
         },
         "compile": {
           "lib/netstandard2.0/SendGrid.dll": {}
+        }
+      },
+      "smartystreets-dotnet-sdk/8.0.15": {
+        "runtime": {
+          "lib/netstandard2.0/smartystreets-dotnet-sdk.dll": {
+            "assemblyVersion": "8.0.15.0",
+            "fileVersion": "8.0.15.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/smartystreets-dotnet-sdk.dll": {}
         }
       },
       "System.Composition/1.0.31": {
@@ -3694,6 +3706,13 @@
       "sha512": "sha512-i6208SyPFvZ5bJRUbOimhBF/axjhiS4xQX71+KWPhzWUJGHbGX+yfwPrUg5y0D3deQlQz94mHeWF6AGHSZ81jQ==",
       "path": "sendgrid/9.10.0",
       "hashPath": "sendgrid.9.10.0.nupkg.sha512"
+    },
+    "smartystreets-dotnet-sdk/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QizAOjpHiGEA+OG8I0FeLRlyAjcTvWZtLfxP9a2qv1aOAkDg+v8YWwtZSglO12ybOWeZBXT09FmO3Pii8H8jxw==",
+      "path": "smartystreets-dotnet-sdk/8.0.15",
+      "hashPath": "smartystreets-dotnet-sdk.8.0.15.nupkg.sha512"
     },
     "System.Composition/1.0.31": {
       "type": "package",

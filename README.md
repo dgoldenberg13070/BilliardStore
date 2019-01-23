@@ -33,3 +33,12 @@ dotnet user-secrets set "Braintree:MerchantId" "st8...."
 dotnet user-secrets set "Braintree:PublicKey" "8os8...."
 dotnet user-secrets set "Braintree:PrivateKey" "gd5b5....."
 ```
+
+## SmartyStreets Configuration
+This application requires that a SmartySteets Token and ID be set before it can be run.  You'll need to provision an API Key from your SmartyStreets account prior to setting this.  Enter the appropriate values below:
+
+
+```
+dotnet user-secrets set "SmartyStreets:AuthId" "a47..."
+dotnet user-secrets set "SmartyStreets:AuthToken" "g76a..."
+```

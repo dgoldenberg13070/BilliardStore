@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SportsStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190122192902_addfljafsadf")]
-    partial class addfljafsadf
+    [Migration("20190123172046_asdf")]
+    partial class asdf
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,10 +58,10 @@ namespace SportsStore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("City")
+                    b.Property<string>("BraintreeNonce")
                         .IsRequired();
 
-                    b.Property<string>("Country")
+                    b.Property<string>("City")
                         .IsRequired();
 
                     b.Property<DateTime?>("DeliveryDate");

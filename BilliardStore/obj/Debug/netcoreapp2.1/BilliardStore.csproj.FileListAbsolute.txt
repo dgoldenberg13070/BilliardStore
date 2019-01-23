@@ -92,4 +92,3 @@ C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\SportsStore.View
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\SportsStore.dll
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\SportsStore.pdb
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\BilliardStore.csproj.CopyComplete
-C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\BilliardStore.csprojAssemblyReference.cache

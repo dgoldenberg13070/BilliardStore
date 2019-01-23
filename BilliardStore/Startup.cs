@@ -45,6 +45,13 @@ namespace BilliardStore
                     Configuration.GetValue<string>("Braintree:PublicKey"),
                     Configuration.GetValue<string>("Braintree:PrivateKey"));
             });
+            services.AddTransient<SmartyStreets.IClient<SmartyStreets.USStreetApi.Lookup>>((s) =>
+            {
+                return new SmartyStreets.ClientBuilder(
+                    Configuration.GetValue<string>("SmartyStreets:AuthId"),
+                    Configuration.GetValue<string>("SmartyStreets:AuthToken")
+                ).BuildUsStreetApiClient();
+            });
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();
