@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyName>SportsStore</AssemblyName>
-    <RootNamespace>SportsStore</RootNamespace>
+    <RootNamespace>BilliardStore</RootNamespace>
     <UserSecretsId>dd734385-2ca7-48b6-8a88-037568bb68c7</UserSecretsId>
   </PropertyGroup>
 

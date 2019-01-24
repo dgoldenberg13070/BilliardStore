@@ -14,7 +14,7 @@ namespace BilliardStore.Controllers
         private readonly SendGrid.ISendGridClient _sendGridClient;
         private readonly Braintree.IBraintreeGateway _braintreeGateway;
         private readonly SmartyStreets.IClient<SmartyStreets.USStreetApi.Lookup> _usStreetClient;
-        readonly bool debug = true;
+        readonly bool debug = false;
 
         public OrderController(Models.IOrderRepository repoService, Models.Cart cartService, SendGrid.ISendGridClient sendGridClient, Braintree.IBraintreeGateway braintreeGateway, SmartyStreets.IClient<SmartyStreets.USStreetApi.Lookup> usStreetClient)
         {
@@ -95,16 +95,21 @@ namespace BilliardStore.Controllers
                 order.SubTotal = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
                 order.Total = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
                 order.Lines = cart.Lines.ToArray();                
-                repository.SaveOrder(order);                
+                repository.SaveOrder(order);
                 if (debug != true)
                 {
+                    string HtmlLines = "";
+                    foreach (System.Collections.Generic.ICollection<Models.CartLine> item in order.Lines)
+                    {
+                    //   HtmlLines = HtmlLines + "<li>" + item.FirstOrDefault(c => c.CartLineID == orderID) + "(quantity: " + item + ")</li>";
+                    }
                     var message = new SendGrid.Helpers.Mail.SendGridMessage
                     {
-                        From = new SendGrid.Helpers.Mail.EmailAddress(
-                       "admin@sbilliardstore.codingtemple.com", "Chalky's Billiard Store Administration"),
-                        Subject = "Receipt for order #" + order.OrderID,
-                        HtmlContent = "Thanks for your order!"
-                    };
+                        From = new SendGrid.Helpers.Mail.EmailAddress("admin@sbilliardstore.codingtemple.com", "Chalky's Billiard Store Administration"),
+                        Subject = "Receipt for order #" + order.TrackingNumber,
+                        HtmlContent = "<h2>Thanks!</h2><p>Thanks for placing your order.</p><p>We'll ship your goods as soon as possible.</p><br/><h2>Details for Order #" + order.TrackingNumber +
+                        "</h2><dl><dt>Order Date</dt><dd>" + order.PlacementDate + "</dd></dl><ul>" + HtmlLines + "/ul>"
+                    };                   
                     message.AddTo(order.Email);
                     var result = await _sendGridClient.SendEmailAsync(message);
                     //This can be helpful debug code, but we wont display it out to the user:
@@ -136,10 +141,7 @@ namespace BilliardStore.Controllers
 
         public Microsoft.AspNetCore.Mvc.IActionResult ValidateAddress(string street, string street2, string city, string state, string zipCode)
         {
-          //  if (string.IsNullOrEmpty(street) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(state))
-          //  {
-          //      return BadRequest("street, city, state, and zipCode are required");
-          //  }
+          
             SmartyStreets.USStreetApi.Lookup lookup = new SmartyStreets.USStreetApi.Lookup
             {
                 Street = street,

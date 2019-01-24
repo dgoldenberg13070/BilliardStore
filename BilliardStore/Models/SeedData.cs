@@ -23,7 +23,7 @@ namespace BilliardStore.Models
             //context.Database is called and set up to the databaseFacade variable
             Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade = context.Database;
             //now the Migrate method is called...this method doesn't return a value
-            databaseFacade.Migrate();
+            //databaseFacade.Migrate();
 
             //DbSet<ProductCategory> productCategories = context.ProductCategories;
             //if (!productCategories.Any())

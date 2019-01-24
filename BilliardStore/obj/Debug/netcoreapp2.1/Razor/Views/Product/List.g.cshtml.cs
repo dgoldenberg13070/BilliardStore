@@ -29,33 +29,9 @@ using BilliardStore.Infrastructure;
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"eb4b54e6698bb3dfe1badaa7c662bb2cadf6d8f8", @"/Views/Product/List.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e51f2cec11fc3db9ab68994b90503e8584bc1caa", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e785ab56c88732eb34e3aa6b878495475344bff8", @"/Views/_ViewImports.cshtml")]
     public class Views_Product_List : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ProductsListViewModel>
     {
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("page-action", "List", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("page-class", "btn", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("page-class-normal", "btn-secondary", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("page-class-selected", "btn-primary", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_4 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn-group pull-right m-1"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        #line hidden
-        #pragma warning disable 0169
-        private string __tagHelperStringValueBuffer;
-        #pragma warning restore 0169
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
-        {
-            get
-            {
-                if (__backed__tagHelperScopeManager == null)
-                {
-                    __backed__tagHelperScopeManager = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager(StartTagHelperWritingScope, EndTagHelperWritingScope);
-                }
-                return __backed__tagHelperScopeManager;
-            }
-        }
-        private global::BilliardStore.Infrastructure.PageLinkTagHelper __BilliardStore_Infrastructure_PageLinkTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
@@ -95,59 +71,28 @@ Write(Html.Partial("ProductSummary", p));
 
 #line default
 #line hidden
-            BeginContext(472, 69, true);
-            WriteLiteral("\r\n<!--\r\nThe below div references the PageLinkTagHelper.cs file\r\n-->\r\n");
+            BeginContext(472, 73, true);
+            WriteLiteral("\r\n<!--\r\nThe below div references the PageLinkTagHelper.cs file\r\n-->\r\n<div");
             EndContext();
-            BeginContext(541, 264, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3df2d415bfc942d197fe9601d1668862", async() => {
-                BeginContext(797, 2, true);
-                WriteLiteral("\r\n");
-                EndContext();
-            }
-            );
-            __BilliardStore_Infrastructure_PageLinkTagHelper = CreateTagHelper<global::BilliardStore.Infrastructure.PageLinkTagHelper>();
-            __tagHelperExecutionContext.Add(__BilliardStore_Infrastructure_PageLinkTagHelper);
+            BeginWriteAttribute("page-model", " page-model=\"", 545, "\"", 575, 1);
 #line 21 "C:\Projects\BilliardStore\BilliardStore\Views\Product\List.cshtml"
-__BilliardStore_Infrastructure_PageLinkTagHelper.PageModel = Model.PagingInfo;
+WriteAttributeValue("", 558, Model.PagingInfo, 558, 17, false);
 
 #line default
 #line hidden
-            __tagHelperExecutionContext.AddTagHelperAttribute("page-model", __BilliardStore_Infrastructure_PageLinkTagHelper.PageModel, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            __BilliardStore_Infrastructure_PageLinkTagHelper.PageAction = (string)__tagHelperAttribute_0.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
-#line 21 "C:\Projects\BilliardStore\BilliardStore\Views\Product\List.cshtml"
-__BilliardStore_Infrastructure_PageLinkTagHelper.PageClassesEnabled = true;
-
-#line default
-#line hidden
-            __tagHelperExecutionContext.AddTagHelperAttribute("page-classes-enabled", __BilliardStore_Infrastructure_PageLinkTagHelper.PageClassesEnabled, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            __BilliardStore_Infrastructure_PageLinkTagHelper.PageClass = (string)__tagHelperAttribute_1.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_1);
-            __BilliardStore_Infrastructure_PageLinkTagHelper.PageClassNormal = (string)__tagHelperAttribute_2.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
-            __BilliardStore_Infrastructure_PageLinkTagHelper.PageClassSelected = (string)__tagHelperAttribute_3.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
-            if (__BilliardStore_Infrastructure_PageLinkTagHelper.PageUrlValues == null)
-            {
-                throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("page-url-category", "BilliardStore.Infrastructure.PageLinkTagHelper", "PageUrlValues"));
-            }
+            EndWriteAttribute();
+            BeginContext(576, 144, true);
+            WriteLiteral(" page-action=\"List\" page-classes-enabled=\"true\"\r\n     page-class=\"btn\" page-class-normal=\"btn-secondary\"\r\n     page-class-selected=\"btn-primary\"");
+            EndContext();
+            BeginWriteAttribute("page-url-category", " page-url-category=\"", 720, "\"", 762, 1);
 #line 23 "C:\Projects\BilliardStore\BilliardStore\Views\Product\List.cshtml"
-__BilliardStore_Infrastructure_PageLinkTagHelper.PageUrlValues["category"] = Model.CurrentCategory;
+WriteAttributeValue("", 740, Model.CurrentCategory, 740, 22, false);
 
 #line default
 #line hidden
-            __tagHelperExecutionContext.AddTagHelperAttribute("page-url-category", __BilliardStore_Infrastructure_PageLinkTagHelper.PageUrlValues["category"], global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
-            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
-            if (!__tagHelperExecutionContext.Output.IsContentModified)
-            {
-                await __tagHelperExecutionContext.SetOutputContentAsync();
-            }
-            Write(__tagHelperExecutionContext.Output);
-            __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            EndContext();
-            BeginContext(805, 2, true);
-            WriteLiteral("\r\n");
+            EndWriteAttribute();
+            BeginContext(763, 44, true);
+            WriteLiteral(" class=\"btn-group pull-right m-1\">\r\n</div>\r\n");
             EndContext();
         }
         #pragma warning restore 1998

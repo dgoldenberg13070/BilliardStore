@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace SportsStore.Controllers
+namespace BilliardStore.Controllers
 {
 
     public class AdminController : Microsoft.AspNetCore.Mvc.Controller

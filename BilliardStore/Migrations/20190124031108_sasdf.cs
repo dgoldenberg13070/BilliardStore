@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SportsStore.Migrations
+namespace BilliardStore.Migrations
 {
     public partial class sasdf : Migration
     {

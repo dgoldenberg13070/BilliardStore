@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace SportsStore.Migrations
+namespace BilliardStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20190124030313_sdfasfdas")]
