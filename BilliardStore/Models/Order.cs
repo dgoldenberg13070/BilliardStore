@@ -7,11 +7,15 @@
         {
             //this.CartLines = new System.Collections.Generic.HashSet<CartLine>();
         }
-
-       // public System.Collections.Generic.ICollection<CartLine> CartLines { get; set; }
-
+           
         [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever]
         public int OrderID { get; set; }
+
+        [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever]
+        public System.Collections.Generic.ICollection<CartLine> Lines { get; set; }
+
+        [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever]
+        public bool Shipped { get; set; }
 
         public string TrackingNumber { get; set; }
 
@@ -32,10 +36,7 @@
         public decimal Total { get; set; }
 
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter your phone number")]
-        public string Phone { get; set; }
-
-        [Microsoft.AspNetCore.Mvc.ModelBinding.BindNever]
-        public System.Collections.Generic.ICollection<CartLine> Lines { get; set; }
+        public string Phone { get; set; }       
 
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter a name")]
         public string Name { get; set; }
@@ -51,6 +52,7 @@
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter a state name")]
         public string State { get; set; }
 
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter a zip code")]
         public string PostalCode { get; set; }
 
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Invalid or incomplete credit card information")]

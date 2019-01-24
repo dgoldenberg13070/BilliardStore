@@ -14,7 +14,7 @@ namespace BilliardStore.Controllers
         private readonly SendGrid.ISendGridClient _sendGridClient;
         private readonly Braintree.IBraintreeGateway _braintreeGateway;
         private readonly SmartyStreets.IClient<SmartyStreets.USStreetApi.Lookup> _usStreetClient;
-        readonly string debug = "false";
+        readonly bool debug = true;
 
         public OrderController(Models.IOrderRepository repoService, Models.Cart cartService, SendGrid.ISendGridClient sendGridClient, Braintree.IBraintreeGateway braintreeGateway, SmartyStreets.IClient<SmartyStreets.USStreetApi.Lookup> usStreetClient)
         {
@@ -24,7 +24,21 @@ namespace BilliardStore.Controllers
             _braintreeGateway = braintreeGateway;
             _usStreetClient = usStreetClient;
         }
-        
+
+        public Microsoft.AspNetCore.Mvc.ViewResult List() => View(repository.Orders.Where(o => !o.Shipped));
+
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        public Microsoft.AspNetCore.Mvc.IActionResult MarkShipped(int orderID)
+        {
+            Models.Order order = repository.Orders.FirstOrDefault(o => o.OrderID == orderID);
+            if (order != null)
+            {
+                order.Shipped = true;
+                repository.SaveOrder(order);
+            }
+            return RedirectToAction(nameof(List));
+        }
+
         public async System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.ViewResult> Checkout()
         {
             ViewBag.BraintreeClientToken = await _braintreeGateway.ClientToken.GenerateAsync();
@@ -75,13 +89,14 @@ namespace BilliardStore.Controllers
                     }).ToArray()
                 };
                 var transactionResult = await _braintreeGateway.Transaction.SaleAsync(transactionRequest);
+                //should check for result of transactionResult here, but skipping for sake of demo'ng rest of code                
                 order.PlacementDate = System.DateTime.UtcNow;
                 order.TrackingNumber = System.Guid.NewGuid().ToString().Substring(0, 8);
                 order.SubTotal = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
                 order.Total = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
                 order.Lines = cart.Lines.ToArray();                
                 repository.SaveOrder(order);                
-                if (debug != "true")
+                if (debug != true)
                 {
                     var message = new SendGrid.Helpers.Mail.SendGridMessage
                     {
@@ -102,7 +117,7 @@ namespace BilliardStore.Controllers
                         }
                     }                                     
                 }                
-                return RedirectToAction(nameof(Completed), new { id = order.TrackingNumber });
+                return RedirectToAction(nameof(Completed), new { id = order.OrderID });
             }
             else
             {
@@ -112,9 +127,9 @@ namespace BilliardStore.Controllers
 
         }
 
-        public Microsoft.AspNetCore.Mvc.ViewResult Completed(string id)
+        public Microsoft.AspNetCore.Mvc.ViewResult Completed(int id)
         {
-            Models.Order order = repository.Orders.Single(x => x.TrackingNumber == id);
+            Models.Order order = repository.Orders.Single(x => x.OrderID == id);
             cart.Clear();
             return View(order);
         }
@@ -133,7 +148,7 @@ namespace BilliardStore.Controllers
                 State = state,
                 ZipCode = zipCode
             };
-            if (debug != "true")
+            if (debug != true)
             {
                 _usStreetClient.Send(lookup);
             }

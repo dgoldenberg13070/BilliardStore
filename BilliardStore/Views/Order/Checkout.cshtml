@@ -1,52 +1,69 @@
 ﻿@model Order
-<div asp-validation-summary="All" class="text-danger"></div>
 <form asp-action="Checkout" method="post">
     <h3>Ship to</h3>
     <div class="form-group">
-        <label>Name:</label><input asp-for="Name" class="form-control" required />
+        <label>Name:</label>
+        <div><span asp-validation-for="Name" class="text-danger"></span></div>
+        <input asp-for="Name" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Email:</label><input asp-for="Email" type="email" class="form-control" required />
+        <label>Email:</label>
+        <div><span asp-validation-for="Email" class="text-danger"></span></div>
+        <input asp-for="Email" type="email" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Phone:</label><input asp-for="Phone" type="text" class="form-control" required />
+        <label>Phone:</label>
+        <div><span asp-validation-for="Phone" class="text-danger"></span></div>
+        <input asp-for="Phone" type="tel" class="form-control" />
     </div>
     <br />
     <h3>Address</h3>
     <div class="form-group">
-        <label>Line 1:</label><input asp-for="Street1" class="form-control" required />
+        <label>Line 1:</label>
+        <div><span asp-validation-for="Street1" class="text-danger"></span></div>
+        <input asp-for="Street1" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Line 2:</label><input asp-for="Street2" class="form-control" />
+        <label>Line 2:</label>
+        <input asp-for="Street2" class="form-control" />
     </div>
     <div class="form-group">
-        <label>City:</label><input asp-for="City" class="form-control" required />
+        <label>City:</label>
+        <div><span asp-validation-for="City" class="text-danger"></span></div>
+        <input asp-for="City" class="form-control" />
     </div>
     <div class="form-group">
-        <label>State:</label><input asp-for="State" class="form-control" required />
+        <label>State:</label>
+        <div><span asp-validation-for="State" class="text-danger"></span></div>
+        <input asp-for="State" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Zip:</label><input asp-for="PostalCode" type="text" pattern="[0-9]{5}" title="Five digit numeric value" class="form-control" required />
+        <label>Zip:</label>
+        <div><span asp-validation-for="PostalCode" class="text-danger"></span></div>
+        <input asp-for="PostalCode" class="form-control" />
     </div>
     <button class="btn btn-default" disabled id="validate-address">Validate Address</button>
     <br /><br />
     <h3>Payment</h3>
-    <input type="hidden" id="braintreeNonce" name="braintreeNonce" />
+    <div class="form-group">
+        <div><span asp-validation-for="BraintreeNonce" class="text-danger"></span></div>
+        <input type="hidden" id="braintreeNonce" name="braintreeNonce" />
+    </div>
     <div class="form-group">
         <label for="card-number">Card Number:</label>
-        <div class="form-control" id="card-number" required></div>
+        <div class="form-control" id="card-number"></div>
     </div>
     <div class="form-group">
         <label for="cvv">CVV:</label>
-        <div class="form-control" id="cvv" type="text" pattern="[0-9]{3}" title="Three digit numeric value" required></div>
-    </div>
-    <div class="form-group">
+        <div class="form-control" id="cvv" type="text"></div>
+     </div>
+     <div class="form-group">
         <label for="expiration-date">Expiration Date:</label>
-        <div class="form-control" id="expiration-date" required></div>
-    </div>
-    <div class="text-center">
+        <div class="form-control" id="expiration-date"></div>
+     </div>
+     <div class="text-center">
         <input class="btn btn-primary" type="submit" value="Complete Order" />
-    </div>
+     </div>
 </form>
 @section Scripts{
     <script src="https://js.braintreegateway.com/web/3.42.0/js/client.min.js"></script>
@@ -54,9 +71,9 @@
     <script type="text/javascript">
         braintree.client.create({
             authorization: '@ViewBag.BraintreeClientToken'
-        }, function (clientErr, clientInstance) {
-            if (clientErr) {
-                console.error(clientErr);
+        }, function (clientErr, clientInstance) {            
+            if (clientErr) {                
+                console.error(clientErr);              
                 return;
             }
             braintree.hostedFields.create({
@@ -80,31 +97,31 @@
                         selector: '#expiration-date'
                     }
                 }
-            }, function (hostedFieldsErr, hostedFieldsInstance) {
-                    if (hostedFieldsErr) {
-                    console.error(hostedFieldsErr);
+            }, function (hostedFieldsErr, hostedFieldsInstance) {               
+                if (hostedFieldsErr) {                    
+                    console.error(hostedFieldsErr);                   
                     return;
-                }
+                }               
                     var form = document.querySelector("form");
-                    form.addEventListener('submit', function (event) {
-                        event.preventDefault();
-                        var state = hostedFieldsInstance.getState();
-                        var formValid = Object.keys(state.fields).every(function (key) {
+                form.addEventListener('submit', function (event) {                   
+                    event.preventDefault();                    
+                    var state = hostedFieldsInstance.getState();                   
+                    var formValid = Object.keys(state.fields).every(function (key) {                        
                             return state.fields[key].isValid;
-                        });
-                        if (formValid) {
-                            hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
-                                if (tokenizeErr) {
+                    });                   
+                    if (formValid) {                        
+                        hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {                            
+                            if (tokenizeErr) {                               
                                     console.error(tokenizeErr);
                                 }
-                                //console.log('Got a nonce: ' + payload.nonce);
-                                document.querySelector('#braintreeNonce').value = payload.nonce;
+                                //console.log('Got a nonce: ' + payload.nonce);                            
+                            document.querySelector('#braintreeNonce').value = payload.nonce;                           
                                 form.submit();
-                            });
-                        }
+                        }); 
+                    } 
                 }, false);
-            });
-        });
+                }); 
+            }); 
     </script>
 }
 <script type="text/javascript">
@@ -124,13 +141,13 @@
             }
         })
     });
-    validateAddressButton.addEventListener("click", (event) => {  
+    validateAddressButton.addEventListener("click", (event) => {
         event.preventDefault();
         var street = document.querySelector("#Street1").value;
         var city = document.querySelector("#City").value;
         var state = document.querySelector("#State").value;
         var zipCode = document.querySelector("#PostalCode").value;
-        var requestUrl = "/Order/ValidateAddress?";       
+        var requestUrl = "/Order/ValidateAddress?";
         if (street != null && street.length > 0) {
             requestUrl += "street=" + street + "&";
         }
@@ -143,19 +160,19 @@
         if (zipCode != null && zipCode.length > 0) {
             requestUrl += "zipCode=" + zipCode + "&";
         }
-        fetch(requestUrl).then((response) => {               
-            response.json().then((json) => {              
-                if (json.length == 0) {                
+        fetch(requestUrl).then((response) => {
+            response.json().then((json) => {
+                if (json.length == 0) {
                     validateAddressButton.classList.remove("btn-success");
                     validateAddressButton.classList.add("btn-danger");
-                    document.querySelectorAll("#Street1, #City, #State, #PostalCode").forEach(e3 => {                        
+                    document.querySelectorAll("#Street1, #City, #State, #PostalCode").forEach(e3 => {
                         e3.classList.add("is-invalid");
                         e3.classList.remove("is-valid");
-                    });                    
-                } else {                    
+                    });
+                } else {
                     validateAddressButton.classList.add("btn-success");
                     validateAddressButton.classList.remove("btn-danger");
-                    document.querySelectorAll("#Street1, #City, #State, #PostalCode").forEach(e3 => {                        
+                    document.querySelectorAll("#Street1, #City, #State, #PostalCode").forEach(e3 => {
                         e3.classList.add("is-valid");
                         e3.classList.remove("is-invalid");
                     });

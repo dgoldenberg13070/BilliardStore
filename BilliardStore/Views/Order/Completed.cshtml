@@ -15,4 +15,10 @@
     <dt>Delivered Date</dt>
     <dd">@(Model.DeliveryDate.HasValue ? Model.DeliveryDate.Value.ToShortDateString() : "Not Delivered")</dd">
 </dl>
-<ul></ul>
+<ul>
+    @foreach (var item in Model.Lines)
+    {
+        <li>@item.ProductName (quantity: @item.Quantity)</li>
+    }
+</ul>
+

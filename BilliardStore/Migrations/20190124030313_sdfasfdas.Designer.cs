@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SportsStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190123172730_adsfasdf")]
-    partial class adsfasdf
+    [Migration("20190124030313_sdfasfdas")]
+    partial class sdfasfdas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,8 @@ namespace SportsStore.Migrations
 
                     b.Property<int?>("OrderID");
 
+                    b.Property<int?>("OrderID1");
+
                     b.Property<string>("ProductDescription");
 
                     b.Property<int>("ProductID");
@@ -46,6 +48,8 @@ namespace SportsStore.Migrations
                     b.HasKey("CartLineID");
 
                     b.HasIndex("OrderID");
+
+                    b.HasIndex("OrderID1");
 
                     b.HasIndex("ProductID");
 
@@ -77,9 +81,12 @@ namespace SportsStore.Migrations
 
                     b.Property<DateTime>("PlacementDate");
 
-                    b.Property<string>("PostalCode");
+                    b.Property<string>("PostalCode")
+                        .IsRequired();
 
                     b.Property<DateTime?>("ShipDate");
+
+                    b.Property<bool>("Shipped");
 
                     b.Property<decimal>("Shipping")
                         .HasColumnType("Money");
@@ -114,9 +121,11 @@ namespace SportsStore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Category");
+                    b.Property<string>("Category")
+                        .IsRequired();
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<string>("ImageUrlMain");
 
@@ -124,52 +133,30 @@ namespace SportsStore.Migrations
 
                     b.Property<string>("ImageUrlSecondary");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<decimal>("Price")
                         .HasColumnType("Money");
 
-                    b.Property<int>("ProductCategoryID");
-
                     b.HasKey("ProductID");
 
-                    b.HasIndex("ProductCategoryID");
-
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("BilliardStore.Models.ProductCategory", b =>
-                {
-                    b.Property<int>("ProductCategoryID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Category");
-
-                    b.Property<string>("Description");
-
-                    b.HasKey("ProductCategoryID");
-
-                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("BilliardStore.Models.CartLine", b =>
                 {
                     b.HasOne("BilliardStore.Models.Order")
-                        .WithMany("Lines")
+                        .WithMany("CartLines")
                         .HasForeignKey("OrderID");
+
+                    b.HasOne("BilliardStore.Models.Order")
+                        .WithMany("Lines")
+                        .HasForeignKey("OrderID1");
 
                     b.HasOne("BilliardStore.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("BilliardStore.Models.Product", b =>
-                {
-                    b.HasOne("BilliardStore.Models.ProductCategory")
-                        .WithMany("Products")
-                        .HasForeignKey("ProductCategoryID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
