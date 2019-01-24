@@ -63,7 +63,6 @@ C:\Projects\BilliardStore\SportsStore\obj\Debug\netcoreapp2.1\BilliardStore.cspr
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\BilliardStore.csproj.CoreCompileInputs.cache
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\BilliardStore.RazorAssemblyInfo.cache
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\BilliardStore.RazorAssemblyInfo.cs
-C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\BilliardStore.AssemblyInfoInputs.cache
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\BilliardStore.AssemblyInfo.cs
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\BilliardStore.RazorCoreGenerate.cache

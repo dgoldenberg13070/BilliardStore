@@ -99,16 +99,16 @@ namespace BilliardStore.Controllers
                 if (debug != true)
                 {
                     string HtmlLines = "";
-                    foreach (System.Collections.Generic.ICollection<Models.CartLine> item in order.Lines)
+                    foreach (Models.CartLine item in order.Lines)
                     {
-                    //   HtmlLines = HtmlLines + "<li>" + item.FirstOrDefault(c => c.CartLineID == orderID) + "(quantity: " + item + ")</li>";
+                        HtmlLines = HtmlLines + "<li>" + item.ProductName + " (quantity: " + item.Quantity + ")</li>";                       
                     }
                     var message = new SendGrid.Helpers.Mail.SendGridMessage
                     {
                         From = new SendGrid.Helpers.Mail.EmailAddress("admin@sbilliardstore.codingtemple.com", "Chalky's Billiard Store Administration"),
                         Subject = "Receipt for order #" + order.TrackingNumber,
                         HtmlContent = "<h2>Thanks!</h2><p>Thanks for placing your order.</p><p>We'll ship your goods as soon as possible.</p><br/><h2>Details for Order #" + order.TrackingNumber +
-                        "</h2><dl><dt>Order Date</dt><dd>" + order.PlacementDate + "</dd></dl><ul>" + HtmlLines + "/ul>"
+                        "</h2>Order Date: " + order.PlacementDate + "<ul>" + HtmlLines + "</ul>"
                     };                   
                     message.AddTo(order.Email);
                     var result = await _sendGridClient.SendEmailAsync(message);

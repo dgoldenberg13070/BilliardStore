@@ -10,10 +10,10 @@
 <dl>
     <dt>Order Date</dt>
     <dd>@Model.PlacementDate.ToShortDateString()</dd>
-    <dt>Ship Date</dt>
-    @*<dd>@(Model.ShipDate.HasValue ? Model.ShipDate.Value.ToShortDateString() : "Not Shipped")</dd>
-    <dt>Delivered Date</dt>
-    <dd">@(Model.DeliveryDate.HasValue ? Model.DeliveryDate.Value.ToShortDateString() : "Not Delivered")</dd">*@
+    @*<dt>Ship Date</dt>
+        <dd>@(Model.ShipDate.HasValue ? Model.ShipDate.Value.ToShortDateString() : "Not Shipped")</dd>
+        <dt>Delivered Date</dt>
+        <dd">@(Model.DeliveryDate.HasValue ? Model.DeliveryDate.Value.ToShortDateString() : "Not Delivered")</dd">*@
 </dl>
 <ul>
     @foreach (var item in Model.Lines)
