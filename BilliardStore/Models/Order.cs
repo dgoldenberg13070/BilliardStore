@@ -57,7 +57,7 @@
 
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Invalid or incomplete credit card information")]
         public string BraintreeNonce { get; set; }
-
+       
     }
 
 }

@@ -89,7 +89,7 @@ namespace BilliardStore.Controllers
                     }).ToArray()
                 };
                 var transactionResult = await _braintreeGateway.Transaction.SaleAsync(transactionRequest);
-                //should check for result of transactionResult here, but skipping for sake of demo'ng rest of code                
+                //should check for result of transactionResult here, but skipping for sake of demo'ng rest of code                               
                 order.PlacementDate = System.DateTime.UtcNow;
                 order.TrackingNumber = System.Guid.NewGuid().ToString().Substring(0, 8);
                 order.SubTotal = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
