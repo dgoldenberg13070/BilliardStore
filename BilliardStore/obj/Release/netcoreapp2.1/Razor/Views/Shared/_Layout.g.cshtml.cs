@@ -68,7 +68,7 @@ Calls NavigationMenuViewComponent.cs, CartSummaryViewComponent.cs
 ");
             EndContext();
             BeginContext(282, 1394, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fc5bcf10175d4cb3a4c711696cb6e198", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "632a2dedb6b34601a1cfd683971454e8", async() => {
                 BeginContext(288, 1381, true);
                 WriteLiteral(@"
     <meta name=""viewport"" content=""width=device-width"" />
@@ -99,7 +99,7 @@ Calls NavigationMenuViewComponent.cs, CartSummaryViewComponent.cs
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(1678, 1418, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1ed3c2ae1a8447169d79e287bcd21a48", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f57182657c834245a83745b97b3286d1", async() => {
                 BeginContext(1684, 188, true);
                 WriteLiteral("\r\n    \r\n    <div class=\"navbar navbar-expand-lg navbar-dark bg-dark\" role=\"navigation\">\r\n        <a class=\"navbar-brand\" href=\"/\">CHALKY\'S BILLIARD STORE</a>\r\n        <div class=\"ml-auto\">");
                 EndContext();

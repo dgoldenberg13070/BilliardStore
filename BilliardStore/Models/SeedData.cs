@@ -3,7 +3,6 @@
 //calls Startup.cs, ApplicationDbContext.cs
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.CodeAnalysis;
 
 namespace BilliardStore.Models
@@ -12,32 +11,21 @@ namespace BilliardStore.Models
     {
         // this method does not return anything
         // this method is called by passing in a parameter called 'app' which is of type ApplicationDbContext.
-        public static void EnsurePopulated(Microsoft.AspNetCore.Builder.IApplicationBuilder app)
+        public static void EnsurePopulated(System.IServiceProvider services)
         {
-            //app.ApplicationServices returns the System.IServiceProvider
-            System.IServiceProvider serviceProvider = app.ApplicationServices;
-            //serviceProvider.GetRequiredService is called and set to the context variable
-            //after next line is called, the auto implemented get property definition for 'Configuration' is executed, then the ConfigureServices method in Startup.cs is executed
-            //then the constructor for ApplicationDbContext in the ApplicationDbContext.cs file is called
-            ApplicationDbContext context = serviceProvider.GetRequiredService<ApplicationDbContext>();
-            //context.Database is called and set up to the databaseFacade variable
-            Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade databaseFacade = context.Database;
-            //now the Migrate method is called...this method doesn't return a value
-            //databaseFacade.Migrate();
-
+            ApplicationDbContext context = services.GetRequiredService<ApplicationDbContext>();
+            //context.Database.Migrate();
             //DbSet<ProductCategory> productCategories = context.ProductCategories;
             //if (!productCategories.Any())
             //{
-
             //    var cueProducts = new ProductCategory{Category = "Cues", Description = "We have the best cues."};
             //    var tableProducts = new ProductCategory { Category = "Tables", Description = "We have the best tables." };
             //    var ballProducts = new ProductCategory { Category = "Balls", Description = "We have the best balls."};
             //    context.ProductCategories.Add(cueProducts);
             //    context.ProductCategories.Add(tableProducts);
             //    context.ProductCategories.Add(ballProducts);
-          
-                DbSet <Product> products = context.Products;
-                if (!products.Any())
+            if (!context.Products.Any())
+            {
                 {
                     var product = new Product
                     {
@@ -157,7 +145,7 @@ namespace BilliardStore.Models
                     context.Products.Add(product);  
                     
                     context.SaveChanges();            
-             //   }
+                }
             }
         }
     }

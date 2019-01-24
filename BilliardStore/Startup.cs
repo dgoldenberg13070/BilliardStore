@@ -102,8 +102,8 @@ namespace BilliardStore
                     template: "{controller}/{action}/{id?}");
             });
             //loads test data by calling the EnsurePopulated method in the SeedData.cs class in the Models folder passing as a parameter 'app'.            
-            Models.SeedData.EnsurePopulated(app);
-          Models.IdentitySeedData.EnsurePopulated(app);
+           // Models.SeedData.EnsurePopulated(app);
+            Models.IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

@@ -30,12 +30,12 @@ namespace BilliardStore.Controllers
             //Products is a class of object type IQueryable<Models.Product>
             //Product is my class defined in the Product.cs file
             //LINQ is used (Where, OrderBy, Skip, Take) to return correct products
-            //next line calls the Products method in the EFProductRepository.cs file
-            System.Linq.IQueryable<Models.Product> products = repository.Products;
-            products = products.Where(p => category == null || p.Category == category);
-            products = products.OrderBy(p => p.ProductID);
-            products = products.Skip((productPage - 1) * PageSize);
-            products = products.Take(PageSize);
+            //next line calls the Products method in the EFProductRepository.cs file                       
+            System.Linq.IQueryable<Models.Product> products = repository.Products
+                .Where(p => category == null || p.Category == category)
+                .OrderBy(p => p.ProductID)
+                .Skip((productPage - 1) * PageSize)
+                .Take(PageSize);
 
             //pagingInfo is a class of object type Models.ViewModels.PagingInfo
             //PagingInfo is my class defined in Paging.Info.cs in the Models/ViewModels folder

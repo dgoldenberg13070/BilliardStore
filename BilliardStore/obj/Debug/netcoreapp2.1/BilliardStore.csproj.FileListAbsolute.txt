@@ -95,3 +95,4 @@ C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\SportsStore.TagH
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\SportsStore.Views.pdb
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\SportsStore.dll
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\SportsStore.pdb
+C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs

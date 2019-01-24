@@ -22,10 +22,10 @@ namespace BilliardStore.Components
         {
             ViewBag.SelectedCategory = RouteData?.Values["category"];
 
-            System.Linq.IQueryable<Models.Product> products = repository.Products;
-            System.Linq.IQueryable<string> vs = products.Select(x => x.Category);
-            vs = vs.Distinct();
-            vs = vs.OrderBy(x => x);
+            System.Linq.IQueryable<string> vs = repository.Products
+                .Select(x => x.Category)
+                .Distinct()
+                .OrderBy(x => x);
                        
             return View(vs);
         }

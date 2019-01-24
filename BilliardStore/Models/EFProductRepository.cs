@@ -66,8 +66,8 @@ namespace BilliardStore.Models
                 context.SaveChanges();
             }
             return dbEntry;
-
         }
+
     }
 
 }
