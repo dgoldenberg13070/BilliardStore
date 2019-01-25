@@ -26,7 +26,10 @@ namespace BilliardStore.Controllers
         }
 
         [Microsoft.AspNetCore.Authorization.Authorize]
-        public Microsoft.AspNetCore.Mvc.ViewResult List() => View(repository.Orders.Where(o => !o.Shipped));
+        public Microsoft.AspNetCore.Mvc.ViewResult List()
+        {
+            return View(repository.Orders.Where(o => !o.Shipped));
+        }
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Authorization.Authorize]
@@ -142,8 +145,7 @@ namespace BilliardStore.Controllers
         }
 
         public Microsoft.AspNetCore.Mvc.IActionResult ValidateAddress(string street, string street2, string city, string state, string zipCode)
-        {
-          
+        {          
             SmartyStreets.USStreetApi.Lookup lookup = new SmartyStreets.USStreetApi.Lookup
             {
                 Street = street,

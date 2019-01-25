@@ -99,3 +99,4 @@ C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\BilliardStore.cs
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\Razor\Views\Error\Error.g.cshtml.cs
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\BilliardStore.csprojAssemblyReference.cache
+C:\Projects\BilliardStore\BilliardStore\obj\Debug\netcoreapp2.1\Razor\Views\Admin\List.g.cshtml.cs

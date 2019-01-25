@@ -6,6 +6,7 @@ namespace BilliardStore.Controllers
     [Microsoft.AspNetCore.Authorization.Authorize]
     public class AccountController : Microsoft.AspNetCore.Mvc.Controller
     {
+
         private Microsoft.AspNetCore.Identity.UserManager<Microsoft.AspNetCore.Identity.IdentityUser> userManager;
         private Microsoft.AspNetCore.Identity.SignInManager<Microsoft.AspNetCore.Identity.IdentityUser> signInManager;
 
@@ -52,5 +53,7 @@ namespace BilliardStore.Controllers
             await signInManager.SignOutAsync();
             return Redirect(returnUrl);
         }
+
     }
+
 }
