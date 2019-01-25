@@ -35,3 +35,5 @@ C:\Projects\BilliardStore\BilliardStore\obj\Release\netcoreapp2.1\SportsStore.Ta
 C:\Projects\BilliardStore\BilliardStore\obj\Release\netcoreapp2.1\SportsStore.Views.pdb
 C:\Projects\BilliardStore\BilliardStore\obj\Release\netcoreapp2.1\SportsStore.dll
 C:\Projects\BilliardStore\BilliardStore\obj\Release\netcoreapp2.1\SportsStore.pdb
+C:\Projects\BilliardStore\BilliardStore\obj\Release\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
+C:\Projects\BilliardStore\BilliardStore\obj\Release\netcoreapp2.1\Razor\Views\Error\Error.g.cshtml.cs

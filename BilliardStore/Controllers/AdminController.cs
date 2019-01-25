@@ -3,8 +3,10 @@
 namespace BilliardStore.Controllers
 {
 
+    [Microsoft.AspNetCore.Authorization.Authorize]
     public class AdminController : Microsoft.AspNetCore.Mvc.Controller
     {
+
         private BilliardStore.Models.IProductRepository repository;
 
         public AdminController(BilliardStore.Models.IProductRepository repo)
@@ -12,9 +14,15 @@ namespace BilliardStore.Controllers
             repository = repo;
         }
 
-        public Microsoft.AspNetCore.Mvc.ViewResult Index() => View(repository.Products);
+        public Microsoft.AspNetCore.Mvc.ViewResult Index()
+        {
+            return View(repository.Products);
+        }
 
-        public Microsoft.AspNetCore.Mvc.ViewResult Edit(int productId) => View(repository.Products.FirstOrDefault(p => p.ProductID == productId));
+        public Microsoft.AspNetCore.Mvc.ViewResult Edit(int productId)
+        {
+            return View(repository.Products.FirstOrDefault(p => p.ProductID == productId));
+        }
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
         public Microsoft.AspNetCore.Mvc.IActionResult Edit(BilliardStore.Models.Product product)
@@ -32,7 +40,10 @@ namespace BilliardStore.Controllers
             }
         }
 
-        public Microsoft.AspNetCore.Mvc.ViewResult Create() => View("Edit", new BilliardStore.Models.Product());
+        public Microsoft.AspNetCore.Mvc.ViewResult Create()
+        {
+            return View("Edit", new BilliardStore.Models.Product());
+        }
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
         public Microsoft.AspNetCore.Mvc.IActionResult Delete(int productId)
@@ -44,5 +55,14 @@ namespace BilliardStore.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        public Microsoft.AspNetCore.Mvc.IActionResult SeedDatabase()
+        {
+            Models.SeedData.EnsurePopulated(HttpContext.RequestServices);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
+
 }

@@ -10,9 +10,8 @@ namespace BilliardStore.Models
         private const string adminUser = "Admin";
         private const string adminPassword = "Secret123$";
 
-        public static async void EnsurePopulated(Microsoft.AspNetCore.Builder.IApplicationBuilder app)
-        {
-            Microsoft.AspNetCore.Identity.UserManager<Microsoft.AspNetCore.Identity.IdentityUser> userManager = app.ApplicationServices.GetRequiredService<UserManager<Microsoft.AspNetCore.Identity.IdentityUser>>();
+        public static async System.Threading.Tasks.Task EnsurePopulated(UserManager<IdentityUser> userManager)
+        {            
             Microsoft.AspNetCore.Identity.IdentityUser user = await userManager.FindByIdAsync(adminUser);
             if (user == null)
             {

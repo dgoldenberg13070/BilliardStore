@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BilliardStore.Migrations
+namespace BilliardStore.Migrations.ApplicationDb
 {
-    public partial class sdfasfdas : Migration
+    public partial class _123 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,8 +69,7 @@ namespace BilliardStore.Migrations
                     UnitPrice = table.Column<decimal>(type: "Money", nullable: false),
                     LineTotal = table.Column<decimal>(type: "Money", nullable: false),
                     ProductID = table.Column<int>(nullable: false),
-                    OrderID = table.Column<int>(nullable: true),
-                    OrderID1 = table.Column<int>(nullable: true)
+                    OrderID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,12 +77,6 @@ namespace BilliardStore.Migrations
                     table.ForeignKey(
                         name: "FK_CartLine_Orders_OrderID",
                         column: x => x.OrderID,
-                        principalTable: "Orders",
-                        principalColumn: "OrderID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_CartLine_Orders_OrderID1",
-                        column: x => x.OrderID1,
                         principalTable: "Orders",
                         principalColumn: "OrderID",
                         onDelete: ReferentialAction.Restrict);
@@ -99,11 +92,6 @@ namespace BilliardStore.Migrations
                 name: "IX_CartLine_OrderID",
                 table: "CartLine",
                 column: "OrderID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CartLine_OrderID1",
-                table: "CartLine",
-                column: "OrderID1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CartLine_ProductID",

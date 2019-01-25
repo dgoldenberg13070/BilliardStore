@@ -25,9 +25,11 @@ namespace BilliardStore.Controllers
             _usStreetClient = usStreetClient;
         }
 
+        [Microsoft.AspNetCore.Authorization.Authorize]
         public Microsoft.AspNetCore.Mvc.ViewResult List() => View(repository.Orders.Where(o => !o.Shipped));
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
+        [Microsoft.AspNetCore.Authorization.Authorize]
         public Microsoft.AspNetCore.Mvc.IActionResult MarkShipped(int orderID)
         {
             Models.Order order = repository.Orders.FirstOrDefault(o => o.OrderID == orderID);
