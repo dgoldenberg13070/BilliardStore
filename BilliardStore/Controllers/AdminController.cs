@@ -60,6 +60,7 @@ namespace BilliardStore.Controllers
         public Microsoft.AspNetCore.Mvc.IActionResult SeedDatabase()
         {
             Models.SeedData.EnsurePopulated(HttpContext.RequestServices);
+            //Models.IdentitySeedData.EnsurePopulated(HttpContext.RequestServices);
             return RedirectToAction(nameof(Index));
         }
 

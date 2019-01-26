@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace BilliardStore.Models
 {
@@ -8,7 +9,7 @@ namespace BilliardStore.Models
 
         private const string adminUser = "Admin";
         private const string adminPassword = "Secret123$";
-
+        
         public static async System.Threading.Tasks.Task EnsurePopulated(UserManager<IdentityUser> userManager)
         {            
             Microsoft.AspNetCore.Identity.IdentityUser user = await userManager.FindByIdAsync(adminUser);
@@ -16,9 +17,9 @@ namespace BilliardStore.Models
             {
                 user = new Microsoft.AspNetCore.Identity.IdentityUser("Admin");
                 await userManager.CreateAsync(user, adminPassword);
-            }
+            }           
         }
-
+        
     }
 
 }
