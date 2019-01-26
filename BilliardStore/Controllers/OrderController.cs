@@ -15,7 +15,7 @@ namespace BilliardStore.Controllers
         private readonly Braintree.IBraintreeGateway _braintreeGateway;
         private readonly SmartyStreets.IClient<SmartyStreets.USStreetApi.Lookup> _usStreetClient;
         readonly bool debug = false;
-
+        
         public OrderController(Models.IOrderRepository repoService, Models.Cart cartService, SendGrid.ISendGridClient sendGridClient, Braintree.IBraintreeGateway braintreeGateway, SmartyStreets.IClient<SmartyStreets.USStreetApi.Lookup> usStreetClient)
         {
             repository = repoService;
@@ -33,12 +33,39 @@ namespace BilliardStore.Controllers
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Authorization.Authorize]
-        public Microsoft.AspNetCore.Mvc.IActionResult MarkShipped(int orderID)
+        public async System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> MarkShipped(int orderID)
         {
             Models.Order order = repository.Orders.FirstOrDefault(o => o.OrderID == orderID);
             if (order != null)
             {
                 order.Shipped = true;
+                order.ShipDate = System.DateTime.Now;
+                if (debug != true)
+                {
+                    string HtmlLines = "";
+                    foreach (Models.CartLine item in order.Lines)
+                    {
+                        HtmlLines = HtmlLines + "<li>" + item.ProductName + " (quantity: " + item.Quantity + ")</li>";
+                    }
+                    var message = new SendGrid.Helpers.Mail.SendGridMessage
+                    {
+                        From = new SendGrid.Helpers.Mail.EmailAddress("admin@sbilliardstore.codingtemple.com", "Chalky's Billiard Store Administration"),
+                        Subject = "Shipping Notification for order #" + order.TrackingNumber,
+                        HtmlContent = "<p>Your order has shipped.</p><br/><h2>Shipping details for Order #" + order.TrackingNumber +
+                        "</h2>Shipping Date: " + order.ShipDate + " CT <ul>" + HtmlLines + "</ul>"
+                    };
+                    message.AddTo(order.Email);
+                    var result = await _sendGridClient.SendEmailAsync(message);
+                    //This can be helpful debug code, but we wont display it out to the user:
+                    var responseBody = await result.DeserializeResponseBodyAsync(result.Body);
+                    if (responseBody != null)
+                    {
+                        foreach (var body in responseBody)
+                        {
+                            System.Console.WriteLine(body.Key + ":" + body.Value);
+                        }
+                    }
+                }
                 repository.SaveOrder(order);
             }
             return RedirectToAction(nameof(List));
@@ -53,30 +80,18 @@ namespace BilliardStore.Controllers
         [Microsoft.AspNetCore.Mvc.HttpPost]
         public async System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> Checkout(Models.Order order, string braintreeNonce)
         {
-
-            //next line calls the Lines method in Cart.cs
-            if (cart.Lines.Count() == 0)
-            {
-                ModelState.AddModelError("", "Your shopping cart is empty!");
-            }
-
+                        
             if (ModelState.IsValid)
             {
                 Braintree.CustomerRequest customer = new Braintree.CustomerRequest();
-                //    if (User.Identity.IsAuthenticated)
-                //   {
-                //       var user = _context.Users.Single(x => x.UserName == User.Identity.Name);
-                //       customer.Email = user.Email;
-                //       customer.FirstName = user.FirstName;
-                //       customer.LastName = user.LastName;
-                //       customer.Phone = user.PhoneNumber;
-                //   }
-                //   else
-                //   {
-                        customer.Email = order.Email;
-                        customer.Phone = order.Phone;
-                //   }
-
+               // if (User.Identity.IsAuthenticated)
+               // {
+               //     var user = _context.Users.Single(x => x.UserName == User.Identity.Name);                    
+               //     customer.FirstName = user.FirstName;
+               //     customer.LastName = user.LastName;                    
+               // }                
+                customer.Email = order.Email;
+                customer.Phone = order.Phone;
                 Braintree.TransactionRequest transactionRequest = new Braintree.TransactionRequest
                 {
                     Amount = cart.Lines.Sum(cartItem => cartItem.Quantity * cartItem.Product.Price),
@@ -95,7 +110,7 @@ namespace BilliardStore.Controllers
                 };
                 var transactionResult = await _braintreeGateway.Transaction.SaleAsync(transactionRequest);
                 //should check for result of transactionResult here, but skipping for sake of demo'ng rest of code                               
-                order.PlacementDate = System.DateTime.UtcNow;
+                order.PlacementDate = System.DateTime.Now;
                 order.TrackingNumber = System.Guid.NewGuid().ToString().Substring(0, 8);
                 order.SubTotal = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
                 order.Total = cart.Lines.Sum(x => x.Quantity * x.Product.Price);
@@ -112,8 +127,8 @@ namespace BilliardStore.Controllers
                     {
                         From = new SendGrid.Helpers.Mail.EmailAddress("admin@sbilliardstore.codingtemple.com", "Chalky's Billiard Store Administration"),
                         Subject = "Receipt for order #" + order.TrackingNumber,
-                        HtmlContent = "<h2>Thanks!</h2><p>Thanks for placing your order.</p><p>We'll ship your goods as soon as possible.</p><br/><h2>Details for Order #" + order.TrackingNumber +
-                        "</h2>Order Date: " + order.PlacementDate + "<ul>" + HtmlLines + "</ul>"
+                        HtmlContent = "<h2>Thanks!</h2><p>Thanks for placing your order.</p><p>We'll ship your goods as soon as possible.</p><br/><h2>Order details for Order #" + order.TrackingNumber +
+                        "</h2>Order Date: " + order.PlacementDate + " CT <ul>" + HtmlLines + "</ul>"
                     };                   
                     message.AddTo(order.Email);
                     var result = await _sendGridClient.SendEmailAsync(message);
@@ -134,7 +149,6 @@ namespace BilliardStore.Controllers
                 ViewBag.BraintreeClientToken = await _braintreeGateway.ClientToken.GenerateAsync();
                 return View(order);
             }
-
         }
 
         public Microsoft.AspNetCore.Mvc.ViewResult Completed(int id)
