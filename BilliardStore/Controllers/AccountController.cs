@@ -1,4 +1,5 @@
-﻿namespace BilliardStore.Controllers
+﻿
+namespace BilliardStore.Controllers
 {
 
     [Microsoft.AspNetCore.Authorization.Authorize]
@@ -37,7 +38,7 @@
                 {
                     await signInManager.SignOutAsync();
                     if ((await signInManager.PasswordSignInAsync(user, accountViewModel.Password, false, false)).Succeeded)
-                    {
+                    {      
                         return Redirect(accountViewModel?.ReturnUrl ?? "/Admin/Index");
                     }
                 }
