@@ -1,6 +1,4 @@
-﻿using BilliardStore.Models.ViewModels;
-
-namespace BilliardStore.Controllers
+﻿namespace BilliardStore.Controllers
 {
 
     [Microsoft.AspNetCore.Authorization.Authorize]
@@ -21,7 +19,7 @@ namespace BilliardStore.Controllers
         [Microsoft.AspNetCore.Authorization.AllowAnonymous]
         public Microsoft.AspNetCore.Mvc.ViewResult Login(string returnUrl)
         {
-            return View(new LoginModel
+            return View(new Models.ViewModels.LoginModel
             {
                 ReturnUrl = returnUrl
             });
@@ -30,22 +28,22 @@ namespace BilliardStore.Controllers
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Authorization.AllowAnonymous]
         [Microsoft.AspNetCore.Mvc.ValidateAntiForgeryToken]
-        public async System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> Login(LoginModel loginModel)
+        public async System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> Login(Models.ViewModels.LoginModel accountViewModel)
         {
             if (ModelState.IsValid)
             {
-                Microsoft.AspNetCore.Identity.IdentityUser user = await userManager.FindByNameAsync(loginModel.Name);
+                Microsoft.AspNetCore.Identity.IdentityUser user = await userManager.FindByNameAsync(accountViewModel.Name);
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();
-                    if ((await signInManager.PasswordSignInAsync(user, loginModel.Password, false, false)).Succeeded)
+                    if ((await signInManager.PasswordSignInAsync(user, accountViewModel.Password, false, false)).Succeeded)
                     {
-                        return Redirect(loginModel?.ReturnUrl ?? "/Admin/Index");
+                        return Redirect(accountViewModel?.ReturnUrl ?? "/Admin/Index");
                     }
                 }
             }
             ModelState.AddModelError("", "Invalid name or password");
-            return View(loginModel);
+            return View(accountViewModel);
         }
 
         public async System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.RedirectResult> Logout(string returnUrl = "/")

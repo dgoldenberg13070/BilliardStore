@@ -1,10 +1,13 @@
-﻿//using System.ComponentModel.DataAnnotations;
-
-namespace BilliardStore.Models.ViewModels
+﻿namespace BilliardStore.Models.ViewModels
 {
 
     public class LoginModel
     {
+
+        public LoginModel()
+        {
+
+        }
 
         [System.ComponentModel.DataAnnotations.Required]
         public string Name { get; set; }
@@ -18,4 +21,3 @@ namespace BilliardStore.Models.ViewModels
     }
 
 }
-

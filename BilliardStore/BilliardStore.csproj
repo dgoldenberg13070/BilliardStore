@@ -36,9 +36,6 @@
     <Content Update="Views\Admin\Edit.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Admin\List.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
     <Content Update="Views\Admin\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -60,10 +57,10 @@
     <Content Update="Views\Shared\Components\CartSummary\Default.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Shared\ProductSummary.cshtml">
+    <Content Update="Views\Shared\Components\AccountPage\Default.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Shared\_AdminLayout.cshtml">
+    <Content Update="Views\Shared\ProductSummary.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

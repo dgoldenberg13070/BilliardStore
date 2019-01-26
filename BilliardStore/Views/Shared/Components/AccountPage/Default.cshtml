@@ -1,0 +1,10 @@
+﻿@model Account
+<div class="">
+    @if (User.Identity.IsAuthenticated)
+    {  
+        <small class="navbar-text"><b>Hello, @User.Identity.Name</b></small>
+    }
+    <a class="btn btn-sm btn-secondary navbar-btn" asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
+        <i class="fa fa-sign-in"></i>
+    </a>
+</div>

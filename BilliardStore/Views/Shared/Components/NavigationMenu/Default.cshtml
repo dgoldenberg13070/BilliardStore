@@ -8,8 +8,8 @@
 <a class="btn btn-block btn-secondary" asp-action="List" asp-controller="Product" asp-route-category="">Home</a>
 @if (User.Identity.IsAuthenticated) { 
     @if (User.Identity.Name.Equals("Admin")) { 
-    <a class="btn btn-block btn-secondary" asp-action="Index" asp-controller="Admin" asp-route-category="">Manage Products</a>
-    <a class="btn btn-block btn-secondary" asp-action="List" asp-controller="Order" asp-route-category="">Manage Orders</a>
+        <a class="btn btn-block btn-secondary" asp-action="Index" asp-controller="Admin" asp-route-category="">Manage Products</a>
+        <a class="btn btn-block btn-secondary" asp-action="List" asp-controller="Order" asp-route-category="">Manage Orders</a>
     }
 }
 @foreach (string category in Model)
