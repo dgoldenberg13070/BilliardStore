@@ -1,18 +1,19 @@
 ﻿@if (User.Identity.IsAuthenticated)
 {
     <div class="">
-        <small class="navbar-text"><b>Hello, @User.Identity.Name</b><b>.&nbsp;&nbsp;Click to Logout -></b></small>
+        <small class="navbar-text"><b>Hello, @User.Identity.Name</b><b>.</b></small>
         <a class="btn btn-sm btn-secondary navbar-btn" asp-controller="Account" asp-action="Logout" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
-            <i class="fas fa-sign-out-alt"></i>
+            Logout
+            @*<i class="fas fa-sign-out-alt"></i>*@
         </a>
     </div>
 }
 else
 {
-    <div class="">
-        <small class="navbar-text"><b>Click to Login -></b></small>
+    <div class="">        
         <a class="btn btn-sm btn-secondary navbar-btn" asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
-            <i class="fas fa-sign-in-alt"></i>
+            Login
+            @*<i class="fas fa-sign-in-alt"></i>*@
         </a>
     </div>
 }

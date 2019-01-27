@@ -78,7 +78,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("</b><b>.&nbsp;&nbsp;Click to Logout -></b></small>\r\n        ");
             EndContext();
             BeginContext(184, 225, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1d8e6560e76d449ba29527ff740bde56", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5f10ec1515be44c3b11b3b6d84f7a039", async() => {
                 BeginContext(346, 59, true);
                 WriteLiteral("\r\n            <i class=\"fas fa-sign-out-alt\"></i>\r\n        ");
                 EndContext();
@@ -126,7 +126,7 @@ else
             WriteLiteral("    <div class=\"\">\r\n        <small class=\"navbar-text\"><b>Click to Login -></b></small>\r\n        ");
             EndContext();
             BeginContext(532, 223, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ab0f59cc34254594baddb69e0c637d7c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a26980a89235468dacf0db01fb5ffa02", async() => {
                 BeginContext(693, 58, true);
                 WriteLiteral("\r\n            <i class=\"fas fa-sign-in-alt\"></i>\r\n        ");
                 EndContext();

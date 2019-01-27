@@ -99,7 +99,7 @@ Write(Html.Partial("ProductSummary", p));
             WriteLiteral("\r\n<!--\r\nThe below div references the PageLinkTagHelper.cs file\r\n-->\r\n");
             EndContext();
             BeginContext(541, 264, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4601a6b2de1941f28269caf50fb37c10", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bac78236f97642979b34aad6d7482eac", async() => {
                 BeginContext(797, 2, true);
                 WriteLiteral("\r\n");
                 EndContext();
