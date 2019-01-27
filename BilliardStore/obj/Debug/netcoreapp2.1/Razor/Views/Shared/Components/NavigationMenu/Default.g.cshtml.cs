@@ -69,7 +69,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(216, 112, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ed6a5d89e3544b46ae37a453f7eca60b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "586641f9d035434c98139bae182f0736", async() => {
                 BeginContext(320, 4, true);
                 WriteLiteral("Home");
                 EndContext();
@@ -114,7 +114,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("        ");
             EndContext();
             BeginContext(427, 115, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "258f2c89b30e407988dbcc45b3a78f3d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1690ace9dae2405981d7c82fc00f7496", async() => {
                 BeginContext(530, 8, true);
                 WriteLiteral("Products");
                 EndContext();
@@ -145,7 +145,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("\r\n        ");
             EndContext();
             BeginContext(552, 112, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "118c1c4486c344b1887157394eaa19d7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cce15cf2be8e412b97c951c4d100d190", async() => {
                 BeginContext(654, 6, true);
                 WriteLiteral("Orders");
                 EndContext();
@@ -196,7 +196,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("    ");
             EndContext();
             BeginContext(720, 265, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f590735c3366451a85c815576d3b7f7e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3148238a6eb141ed92ebf789eef6a748", async() => {
                 BeginContext(956, 10, true);
                 WriteLiteral("\r\n        ");
                 EndContext();

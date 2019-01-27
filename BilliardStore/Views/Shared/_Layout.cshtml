@@ -14,8 +14,9 @@ Calls NavigationMenuViewComponent.cs, CartSummaryViewComponent.cs
     <title>Chalky's Billiard Store</title>
 </head>
 <body>
-    <div class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
-        <a class="navbar-brand" href="/">CHALKY'S BILLIARD STORE</a>
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation"> 
+        <a class="navbar-brand" href="/">
+        <img src="../images/rack.png" width="30" height="30" class="d-inline-block align-top" alt=""> CHALKY'S BILLIARD STORE</a>        
         <div class="ml-auto">@await Component.InvokeAsync("AccountPage")</div>
         <div class="ml-auto">@await Component.InvokeAsync("CartSummary")</div>
     </div>

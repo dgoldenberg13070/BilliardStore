@@ -65,7 +65,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n");
             EndContext();
             BeginContext(52, 317, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "87cad9d943304f379e822f98138afe8e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c0e90540bb2e4d7d96ad8470bf10df39", async() => {
                 BeginContext(58, 304, true);
                 WriteLiteral(@"
     <meta name=""viewport"" content=""width=device-width"" />
@@ -89,7 +89,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(371, 139, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ce1b05044f24eb6bc8c03d39333d7bd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "30a75ca6f6904daca8ad49ff3f41094a", async() => {
                 BeginContext(377, 126, true);
                 WriteLiteral("\r\n    <h2 class=\"text-danger\">Error.</h2>\r\n    <h3 class=\"text-danger\">An error occurred while processing your request.</h3>\r\n");
                 EndContext();
