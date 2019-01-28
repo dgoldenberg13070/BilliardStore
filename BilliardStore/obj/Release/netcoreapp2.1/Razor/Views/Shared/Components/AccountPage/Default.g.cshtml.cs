@@ -78,7 +78,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("</b><b>.</b></small>\r\n        ");
             EndContext();
             BeginContext(154, 249, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "148aeb53b7d147588fd70d7a27674cad", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e4990b0b9a664bdb9c78199594919edf", async() => {
                 BeginContext(316, 22, true);
                 WriteLiteral("\r\n            Logout\r\n");
                 EndContext();
@@ -129,7 +129,7 @@ else
             WriteLiteral("    <div class=\"\">        \r\n        ");
             EndContext();
             BeginContext(465, 246, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5e493a3360f94731875d0ae969ca981f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "629c792664454cc0b7b515d6ecdbad09", async() => {
                 BeginContext(626, 21, true);
                 WriteLiteral("\r\n            Login\r\n");
                 EndContext();

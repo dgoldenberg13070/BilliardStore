@@ -103,7 +103,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("        ");
             EndContext();
             BeginContext(690, 252, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b622124746e14332a5d4c050edf15c28", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3d8ac8c3de2a42b1a9858d4b18d1e303", async() => {
                 BeginContext(867, 71, true);
                 WriteLiteral("\r\n            <i class=\"fa fa-shopping-cart\"></i>            \r\n        ");
                 EndContext();

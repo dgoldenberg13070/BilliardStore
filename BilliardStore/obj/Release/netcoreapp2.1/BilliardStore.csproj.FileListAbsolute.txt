@@ -37,3 +37,4 @@ C:\Projects\BilliardStore\BilliardStore\obj\Release\netcoreapp2.1\SportsStore.pd
 C:\Projects\BilliardStore\BilliardStore\obj\Release\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
 C:\Projects\BilliardStore\BilliardStore\obj\Release\netcoreapp2.1\Razor\Views\Error\Error.g.cshtml.cs
 C:\Projects\BilliardStore\BilliardStore\obj\Release\netcoreapp2.1\Razor\Views\Shared\Components\AccountPage\Default.g.cshtml.cs
+C:\Projects\BilliardStore\BilliardStore\obj\Release\netcoreapp2.1\Razor\Views\Order\List - Copy.g.cshtml.cs

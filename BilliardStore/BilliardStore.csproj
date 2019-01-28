@@ -51,6 +51,9 @@
     <Content Update="Views\Order\Checkout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Order\List - Copy.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Order\List.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
