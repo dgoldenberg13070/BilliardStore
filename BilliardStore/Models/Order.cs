@@ -20,6 +20,7 @@
         public string TrackingNumber { get; set; }
 
         [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Please enter your email address")]
+        [System.ComponentModel.DataAnnotations.RegularExpression(".+\\@.+\\..+",ErrorMessage = "Please enter a valid email address")]
         public string Email { get; set; }
 
         public System.DateTime PlacementDate { get; set; }
