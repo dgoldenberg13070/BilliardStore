@@ -96,7 +96,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("</td>\r\n                <th>Product</th>\r\n                <th>Quantity</th>\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(443, 304, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "48571a530ee543ef894262c8060f69ef", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cba7c468ccdc40438a2eed3962de60cb", async() => {
                 BeginContext(488, 61, true);
                 WriteLiteral("\r\n                        <input type=\"hidden\" name=\"orderId\"");
                 EndContext();

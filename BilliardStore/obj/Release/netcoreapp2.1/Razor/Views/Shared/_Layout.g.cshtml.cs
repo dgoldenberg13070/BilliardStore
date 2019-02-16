@@ -68,7 +68,7 @@ Calls NavigationMenuViewComponent.cs, CartSummaryViewComponent.cs
 ");
             EndContext();
             BeginContext(282, 539, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f824708babd4d48af1b4dc681004d31", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "25fe4f7dcdaf43d28fed017d03b4ff0f", async() => {
                 BeginContext(288, 526, true);
                 WriteLiteral(@"
     <meta name=""viewport"" content=""width=device-width"" />
@@ -93,7 +93,7 @@ Calls NavigationMenuViewComponent.cs, CartSummaryViewComponent.cs
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(823, 1877, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f2b771dfad145ccb4fc72e046d7bce3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0761b52c73084349b0bc6b3f8de83995", async() => {
                 BeginContext(829, 295, true);
                 WriteLiteral(@"
     <div class=""navbar navbar-expand-lg navbar-dark bg-dark"" role=""navigation""> 

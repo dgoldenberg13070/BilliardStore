@@ -20,8 +20,8 @@ Calls Product.cs (model Product, Model.Name, Model.Price.ToString("c"), Model.De
         </h5>
         <span style="margin-left:0em">
             <img style="max-height:13.0em;margin-right:0em;max-width:15.5em;" src=@Model.ImageUrlMain />
-            <img style="max-height:13.0em;margin-right:0em;max-width:15.5em" src=@Model.ImageUrlSecondary />
-            <img style="max-height:13.0em;margin-right:0em;max-width:15.5em" src=@Model.ImageUrlOptional />
+            <img style="max-height:13.0em;margin-right:0em;max-width:15.5em;" src=@Model.ImageUrlSecondary />
+            <img style="max-height:13.0em;margin-right:0em;max-width:15.5em;" src=@Model.ImageUrlOptional />
         </span>      
     </div>
     <form id="@Model.ProductID" asp-action="AddToCart" asp-controller="Cart" method="post">
