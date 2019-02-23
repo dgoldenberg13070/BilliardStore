@@ -128,7 +128,7 @@ using BilliardStore.Infrastructure;
             WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(936, 359, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6ce0bd31b4524617b682910497521dbd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1f0ddf2fb2b844118f49827c08513bca", async() => {
                 BeginContext(984, 63, true);
                 WriteLiteral("\r\n                        <input type=\"hidden\" name=\"ProductID\"");
                 EndContext();
@@ -219,7 +219,7 @@ WriteAttributeValue("", 1780, Model.ReturnUrl, 1780, 16, false);
             WriteLiteral("        ");
             EndContext();
             BeginContext(1893, 84, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b77cf27fb9ae410594449aebbec5dac6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b488fb3955c840e2b4fdedd5e081e216", async() => {
                 BeginContext(1965, 8, true);
                 WriteLiteral("Checkout");
                 EndContext();

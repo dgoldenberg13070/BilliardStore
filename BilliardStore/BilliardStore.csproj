@@ -74,6 +74,7 @@
 
   <ItemGroup>
     <Folder Include="Connected Services\" />
+    <Folder Include="wwwroot\lib\css\" />
   </ItemGroup>
 
 </Project>
